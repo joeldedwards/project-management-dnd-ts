@@ -1,0 +1,24 @@
+{
+  "name": "drag-n-drop-proj",
+  "version": "1.0.0",
+  "description": "Drag and Drop Project Manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "keywords": [
+    "typescript",
+    "drag-and-drop"
+  ],
+  "author": "Joel Edwards",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.5.4",
+    "undici-types": "^7.20.0"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}
