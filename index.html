@@ -10,14 +10,18 @@
   </head>
   <body>
     <template id="project-input">
-      <form>
+      <dialog class="modal" id="modal-container">
+        <button type="button" id="cancel-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      <form id="user-input">
         <div class="form-control">
-          <label for="title">Title</label>
-          <input type="text" id="title" />
+          <label for="title">Project Title</label>
+          <input type="text" id="title" placeholder="Enter project title" />
         </div>
         <div class="form-control">
           <label for="description">Description</label>
-          <textarea id="description" rows="3"></textarea>
+          <textarea id="description" rows="3" placeholder="Enter description"></textarea>
         </div>
         <div class="form-control">
           <label for="priority">Priority</label>
@@ -31,8 +35,9 @@
           <label for="people">People</label>
           <input type="number" id="people" step="1" min="0" max="10" />
         </div>
-        <button type="submit">+ Add New Project</button>
+        <button type="submit">Submit</button>
       </form>
+      </dialog>
     </template>
     <template id="single-project">
       <li draggable="true">
@@ -67,7 +72,13 @@
         </nav>
       </aside>
       <main id="app-main">
-        <header id="app-header"></header>
+        <header id="app-header">
+          <h1>Project Manager</h1>
+          <button type="button" id="open-form-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            Add New Project
+          </button>
+        </header>
         <section id="app-section"></section>
       </main>
     </div>

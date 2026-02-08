@@ -30,6 +30,8 @@ export class ProjectList extends Component<HTMLDivElement, HTMLElement> implemen
     dropHandler(event: DragEvent): void {
         const projectId = event.dataTransfer!.getData('text/plain');
         projectState.moveProject(projectId, this.type === 'to-do' ? ProjectStatus.ToDo : this.type === 'in-progress' ? ProjectStatus.InProgress : this.type === 'review' ? ProjectStatus.Review : ProjectStatus.Completed);
+        const listEl = this.element.querySelector('ul')!;
+        listEl.classList.remove('droppable');
     }
 
     @Autobind

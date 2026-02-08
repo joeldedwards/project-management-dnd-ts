@@ -11,7 +11,7 @@ html {
 body {
   margin: 0;
   padding: 5rem;
-  background-color: #c3dbd3;
+  background-color: #dee2ec;
 }
 
 label,
@@ -37,7 +37,6 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  background: #fff5f9;
 }
 
 button {
@@ -62,8 +61,27 @@ button:active {
   border-color: #f3c23b;
 }
 
+#open-form-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: end;
+}
+
+#open-form-btn svg {
+  height: 1rem;
+  margin-right: 0.25rem;
+}
+
+#cancel-btn {
+  justify-self: end;
+  display: flex;
+  background: none;
+  border: none;
+}
+
 #app {
-  background: #edf6f5;
+  background: #f2f6fe;
   padding: 1rem;
   display: flex;
   border-radius: 1rem;
@@ -77,6 +95,16 @@ main {
   gap: 1rem;
   width: 100%;
   height: 100dvh;
+}
+
+#app-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+#app-header h1 {
+  margin: 0;
 }
 
 #app-section {
@@ -122,10 +150,6 @@ aside ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-aside ul li a:hover {
-  background: #fff5f9;
 }
 
 aside ul li a.active {
@@ -283,8 +307,44 @@ aside ul li a.active {
 }
 
 #user-input {
-  margin: 1rem;
+  margin: 0 1rem 1rem 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: #edf6f5;
+}
+
+#user-input button {
+  margin: 1.5rem 0 0;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  margin: 0;
+  appearance: none;
+  text-indent: 0.5rem;
+  outline: none;
+}
+
+dialog {
+  min-width: 480px;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
 }

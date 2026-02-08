@@ -4,14 +4,16 @@ import * as Validation from "../util/validation.js";
 import { projectState } from "../state/project-state.js";
 
 // ProjectInput Class
-export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
+export class ProjectInput extends Component<HTMLDivElement, HTMLDialogElement> {
     titleInputElement: HTMLInputElement;
     descriptionInputElement: HTMLInputElement;
     peopleInputElement: HTMLInputElement;
     priorityInputElement: HTMLSelectElement;
+    private formElement: HTMLFormElement;
 
     constructor() {
-        super('project-input', 'app-header', true, 'user-input');
+        super('project-input', 'app-header', true, 'modal-container');
+        this.formElement = this.element.querySelector('form') as HTMLFormElement;
         this.titleInputElement = this.element.querySelector('#title') as HTMLInputElement;
         this.descriptionInputElement = this.element.querySelector('#description') as HTMLInputElement;
         this.peopleInputElement = this.element.querySelector('#people') as HTMLInputElement;
@@ -21,10 +23,19 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
     }
 
     configure() {
-        this.element.addEventListener('submit', this.submitHandler);
+        this.formElement.addEventListener('submit', this.submitHandler);
+        const cancelBtn = this.element.querySelector('#cancel-btn')!;
+        cancelBtn.addEventListener('click', () => {
+            this.element.close();
+        });
     }
 
     renderContent() { };
+
+    @Autobind
+    openModal() {
+        this.element.showModal();
+    }
 
     private gatherUserInput(): [string, string, number, string] | void {
         const enteredTitle = this.titleInputElement.value;
@@ -76,6 +87,7 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
             const [title, desc, people, priority] = userInput;
             projectState.addProject(title, desc, people, priority);
             this.clearInputs();
+            this.element.close();
         }
     }
 }

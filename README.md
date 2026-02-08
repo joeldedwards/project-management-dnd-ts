@@ -3,6 +3,8 @@ Project Management Tool (TypeScript)
 
 A robust, object-oriented Task Management application built entirely with **TypeScript**. This project demonstrates advanced TypeScript features, including custom decorators, abstract classes, and the Singleton design pattern to manage application state.
 
+![alt text](image.png)
+
 🚀 Key Features
 ---------------
 
