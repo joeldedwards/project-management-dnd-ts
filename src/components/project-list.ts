@@ -59,14 +59,16 @@ export class ProjectList extends Component<HTMLDivElement, HTMLElement> implemen
                 return proj.status === ProjectStatus.Completed
             })
             this.assignedProjects = relevantProjects;
+            this.renderContent();
             this.renderProjects();
         });
     }
 
     renderContent() {
         const listId = `${this.type}-projects-list`;
+        const projectCount = this.assignedProjects.length;
         this.element.querySelector('ul')!.id = listId;
-        this.element.querySelector('h2')!.textContent = this.type;
+        this.element.querySelector('h2')!.textContent = `${this.type} (${projectCount})`;
     }
 
     private renderProjects() {
