@@ -1,13 +1,14 @@
-import Component from "./base-components.js";
-import { Autobind } from "../decorators/autobind.js";
-import * as Validation from "../util/validation.js";
-import { projectState } from "../state/project-state.js";
+import Component from "./base-components";
+import { Autobind } from "../decorators/autobind";
+import * as Validation from "../util/validation";
+import { projectState } from "../state/project-state";
 
 // ProjectInput Class
 export class ProjectInput extends Component<HTMLDivElement, HTMLDialogElement> {
     titleInputElement: HTMLInputElement;
     descriptionInputElement: HTMLInputElement;
     peopleInputElement: HTMLInputElement;
+    dueDateInputElement: HTMLInputElement;
     priorityInputElement: HTMLSelectElement;
     private formElement: HTMLFormElement;
 
@@ -17,6 +18,7 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLDialogElement> {
         this.titleInputElement = this.element.querySelector('#title') as HTMLInputElement;
         this.descriptionInputElement = this.element.querySelector('#description') as HTMLInputElement;
         this.peopleInputElement = this.element.querySelector('#people') as HTMLInputElement;
+        this.dueDateInputElement = this.element.querySelector('#due-date') as HTMLInputElement;
         this.priorityInputElement = this.element.querySelector('#priority') as HTMLSelectElement;
 
         this.configure();
@@ -37,11 +39,12 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLDialogElement> {
         this.element.showModal();
     }
 
-    private gatherUserInput(): [string, string, number, string] | void {
+    private gatherUserInput(): [string, string, number, string, string] | void {
         const enteredTitle = this.titleInputElement.value;
         const enteredDescription = this.descriptionInputElement.value;
         const enteredPeople = this.peopleInputElement.value;
         const enteredPriority = this.priorityInputElement.value;
+        const enteredDueDate = this.dueDateInputElement.value;
 
         const titleValidatable: Validation.Validatable = {
             value: enteredTitle,
@@ -58,17 +61,22 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLDialogElement> {
             min: 1,
             max: 5
         };
+        const dueDateValidatable: Validation.Validatable = {
+            value: enteredDueDate,
+            required: true,
+        };
 
         if (
             !Validation.validate(titleValidatable) ||
             !Validation.validate(descriptionValidatable) ||
-            !Validation.validate(peopleValidatable)
+            !Validation.validate(peopleValidatable) ||
+            !Validation.validate(dueDateValidatable)
         ) {
             alert('Invalid input, please try again!');
             return;
         }
         else {
-            return [enteredTitle, enteredDescription, +enteredPeople, enteredPriority];
+            return [enteredTitle, enteredDescription, +enteredPeople, enteredPriority, enteredDueDate];
         }
     }
 
@@ -84,8 +92,8 @@ export class ProjectInput extends Component<HTMLDivElement, HTMLDialogElement> {
         event.preventDefault();
         const userInput = this.gatherUserInput();
         if (Array.isArray(userInput)) {
-            const [title, desc, people, priority] = userInput;
-            projectState.addProject(title, desc, people, priority);
+            const [title, desc, people, priority, dueDate] = userInput;
+            projectState.addProject(title, desc, people, priority, dueDate);
             this.clearInputs();
             this.element.close();
         }

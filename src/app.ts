@@ -1,5 +1,5 @@
-import { ProjectInput } from "./components/project-input.js";
-import { ProjectList } from "./components/project-list.js";
+import { ProjectInput } from "./components/project-input";
+import { ProjectList } from "./components/project-list";
 
 const projInput = new ProjectInput();
 const addBtn = document.getElementById('open-form-btn')!;

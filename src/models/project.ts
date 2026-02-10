@@ -13,6 +13,7 @@ export class Project {
         public description: string,
         public people: number,
         public status: ProjectStatus,
-        public priority: string
+        public priority: string,
+        public dueDate: string
     ) { }
 }
